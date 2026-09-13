@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Senior Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .info {
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #fff3cd;
+            color: #856404;
+            font-size: 14px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 15px;
+            margin-right: 8px;
+            padding: 10px 18px;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .view {
+            background: #2563eb;
+        }
+
+        .accept {
+            background: #16803c;
+        }
+
+        .decline {
+            background: #dc2626;
+        }
+
+        .empty {
+            text-align: center;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+        }
+
+        .logout {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎓 Senior Dashboard</h1>
+
+    <p class="subtitle">
+        Guidance requests from juniors
+    </p>
+
+    {% if requests %}
+
+        {% for request in requests %}
+
+        <div class="card">
+
+            <div class="name">
+                👤 {{ request[1] }}
+            </div>
+
+            <div class="info">
+
+                <b>Department:</b>
+                {{ request[2] }}
+                <br>
+
+                <b>Year:</b>
+                {{ request[3] }}
+                <br>
+
+                <b>Requirement:</b>
+                {{ request[4] }}
+                <br>
+
+                <b>Status:</b>
+                {{ request[5] }}
+
+            </div>
+
+            {% if request[5] == "Pending" %}
+
+                <a
+                    class="button accept"
+                    href="/accept-request/{{ request[0] }}"
+                >
+                    ✓ Accept
+                </a>
+
+                <a
+                    class="button decline"
+                    href="/decline-request/{{ request[0] }}"
+                >
+                    ✕ Decline
+                </a>
+
+            {% elif request[5] == "Accepted" %}
+
+                <a
+                    class="button view"
+                    href="/discussion/{{ request[0] }}"
+                >
+                    💬 Open Discussion
+                </a>
+
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty">
+
+            <h2>📭 No Guidance Requests</h2>
+
+            <p>
+                New junior requests will appear here.
+            </p>
+
+        </div>
+
+    {% endif %}
+<a
+    class="button view"
+    href="/manage-profile"
+>
+    ⚙️ Manage Profile
+</a>
+
+    <a class="logout" href="/logout">
+        Logout
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Manage Profile</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 11px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+        }
+
+        textarea {
+            height: 75px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        .success {
+            background: #d1fae5;
+            color: #166534;
+            padding: 12px;
+            border-radius: 7px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 25px auto;
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>⚙️ Manage Senior Profile</h1>
+
+    {% if success %}
+
+    <div class="success">
+        ✓ {{ success }}
+    </div>
+
+    {% endif %}
+
+
+    <div class="card">
+
+        <form method="POST">
+
+            <label>Full Name</label>
+            <input
+                type="text"
+                name="name"
+                value="{{ senior[1] }}"
+                required
+            >
+
+
+            <label>Department</label>
+            <input
+                type="text"
+                name="department"
+                value="{{ senior[2] }}"
+                required
+            >
+
+
+            <label>Year</label>
+            <input
+                type="text"
+                name="year"
+                value="{{ senior[3] }}"
+                required
+            >
+
+
+            <label>Current Status</label>
+            <input
+                type="text"
+                name="status"
+                value="{{ senior[4] }}"
+            >
+
+
+            <label>Current Work</label>
+            <textarea name="current_work">{{ senior[5] }}</textarea>
+
+
+            <label>City / District</label>
+            <input
+                type="text"
+                name="location"
+                value="{{ senior[6] }}"
+            >
+
+
+            <label>Skills</label>
+            <textarea name="skills">{{ senior[7] }}</textarea>
+
+
+            <label>Projects</label>
+            <textarea name="projects">{{ senior[8] }}</textarea>
+
+
+            <label>Hackathon / Technical Experience</label>
+            <textarea name="hackathon">{{ senior[9] }}</textarea>
+
+
+            <label>Internship Experience</label>
+            <textarea name="internship">{{ senior[10] }}</textarea>
+
+
+            <label>Areas You Can Guide</label>
+            <textarea name="guidance">{{ senior[11] }}</textarea>
+
+
+            <label>Preferred Guidance Mode</label>
+
+            <select name="mode">
+
+                <option value="Online"
+                    {% if senior[12] == "Online" %}selected{% endif %}>
+                    Online
+                </option>
+
+                <option value="Offline"
+                    {% if senior[12] == "Offline" %}selected{% endif %}>
+                    Offline
+                </option>
+
+                <option value="Both"
+                    {% if senior[12] == "Both" %}selected{% endif %}>
+                    Both
+                </option>
+
+            </select>
+
+
+            <label>🟢 Availability</label>
+
+            <select name="availability">
+
+                <option value="Available"
+                    {% if senior[15] == "Available" %}selected{% endif %}>
+                    🟢 Available
+                </option>
+
+                <option value="Busy"
+                    {% if senior[15] == "Busy" %}selected{% endif %}>
+                    🟡 Busy
+                </option>
+
+                <option value="Not Available"
+                    {% if senior[15] == "Not Available" %}selected{% endif %}>
+                    ⚫ Not Available
+                </option>
+
+            </select>
+
+
+            <button type="submit">
+                💾 Update Profile
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <a
+        class="back"
+        href="/senior-dashboard"
+    >
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+
+</html>

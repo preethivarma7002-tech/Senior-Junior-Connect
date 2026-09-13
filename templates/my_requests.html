@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>My Requests</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .senior-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .info {
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 7px 14px;
+            border-radius: 20px;
+            background: #fff3cd;
+            color: #856404;
+            font-weight: bold;
+        }
+
+        .accepted {
+            background: #d1fae5;
+            color: #166534;
+        }
+
+        .declined {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            border-radius: 7px;
+            text-decoration: none;
+            color: white;
+            background: #2563eb;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .empty {
+            background: white;
+            padding: 35px;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .home {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📋 My Guidance Requests</h1>
+
+    <p class="subtitle">
+        Track the guidance requests you have sent to seniors.
+    </p>
+
+
+    {% if requests %}
+
+        {% for request in requests %}
+
+        <div class="card">
+
+            <div class="senior-name">
+                👨‍🎓 {{ request[1] }}
+            </div>
+
+            <div class="info">
+
+                <b>Department:</b>
+                {{ request[2] }}
+
+                <br>
+
+                <b>Year:</b>
+                {{ request[3] }}
+
+                <br>
+
+                <b>Your Requirement:</b>
+                {{ request[4] }}
+
+                <br>
+
+                <b>Status:</b>
+
+                {% if request[5] == "Accepted" %}
+
+                    <span class="status accepted">
+                        ✓ Accepted
+                    </span>
+
+                {% elif request[5] == "Declined" %}
+
+                    <span class="status declined">
+                        ✕ Declined
+                    </span>
+
+                {% else %}
+
+                    <span class="status">
+                        ⏳ Pending
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            {% if request[5] == "Accepted" %}
+
+                <a
+                    class="button"
+                    href="/discussion/{{ request[0] }}"
+                >
+                    💬 Open Discussion
+                </a>
+
+                <a
+                    class="button"
+                    href="/feedback/{{ request[0] }}"
+                >
+                    ⭐ Give Feedback
+                </a>
+
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+
+    {% else %}
+
+        <div class="empty">
+
+            <h2>📭 No Requests Yet</h2>
+
+            <p>
+                You haven't sent any guidance requests.
+            </p>
+
+            <p>
+                Find a suitable senior and send your first request!
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+    <a
+        class="home"
+        href="/junior-home"
+    >
+        ← Back to Home
+    </a>
+
+</div>
+
+</body>
+</html>

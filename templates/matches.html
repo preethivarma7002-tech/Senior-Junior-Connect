@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>AI Senior Matches</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .name {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .score {
+            font-size: 22px;
+            font-weight: bold;
+            color: #16803c;
+        }
+
+        .availability {
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        .breakdown {
+            background: #eef2ff;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+
+        .reasons {
+            background: #eef8f1;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .home {
+            display: block;
+            width: fit-content;
+            margin: 25px auto;
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎯 AI Recommended Seniors</h1>
+
+    <p style="text-align:center;">
+        Seniors are ranked based on your requirement, skills,
+        experience and feedback.
+    </p>
+
+
+    {% if results %}
+
+        {% for score, matched, breakdown, senior, rating, availability in results %}
+
+        <div class="card">
+
+            <div class="top">
+
+                <div class="name">
+                    👨‍🎓 {{ senior[1] }}
+                </div>
+
+                <div class="score">
+                    {{ score }}% Match
+                </div>
+
+            </div>
+
+
+            <div class="availability">
+
+                {% if availability == "Available" %}
+
+                    🟢 Available
+
+                {% elif availability == "Busy" %}
+
+                    🟡 Busy
+
+                {% else %}
+
+                    ⚫ Not Available
+
+                {% endif %}
+
+            </div>
+
+
+            <p>
+                <b>Department:</b>
+                {{ senior[2] }}
+            </p>
+
+            <p>
+                <b>Year:</b>
+                {{ senior[3] }}
+            </p>
+
+            <p>
+                <b>Skills:</b>
+                {{ senior[7] }}
+            </p>
+
+            <p>
+                <b>Projects:</b>
+                {{ senior[8] }}
+            </p>
+
+            <p>
+                <b>Guidance:</b>
+                {{ senior[11] }}
+            </p>
+
+
+            <div class="breakdown">
+
+                <b>🤖 AI Match Breakdown</b>
+
+                <br><br>
+
+                Skills / Requirement:
+                {{ breakdown["skill"] }}/60
+
+                <br>
+
+                Experience:
+                {{ breakdown["experience"] }}/20
+
+                <br>
+
+                Guidance Area:
+                {{ breakdown["guidance"] }}/10
+
+                <br>
+
+                Feedback:
+                {{ breakdown["feedback"] }}/10
+
+            </div>
+
+
+            {% if matched %}
+
+            <div class="reasons">
+
+                <b>🔎 Matching Reasons</b>
+
+                <br><br>
+
+                {% for word in matched %}
+
+                    • {{ word }}<br>
+
+                {% endfor %}
+
+            </div>
+
+            {% endif %}
+
+
+            {% if rating > 0 %}
+
+            <p>
+                ⭐ Senior Feedback Rating:
+                {{ "%.1f"|format(rating) }}/5
+            </p>
+
+            {% endif %}
+
+
+            <a
+                class="button"
+                href="/profile/{{ senior[0] }}"
+            >
+                View Profile →
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="card">
+
+            <h2>No senior matches found.</h2>
+
+            <p>
+                Try entering more details about your requirement.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+    <a
+        class="home"
+        href="/junior-home"
+    >
+        ← Back to Home
+    </a>
+
+</div>
+
+</body>
+</html>

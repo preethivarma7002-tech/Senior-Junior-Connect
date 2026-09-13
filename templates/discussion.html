@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Discussion</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .chat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            min-height: 350px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 10px 14px;
+            margin: 10px 0;
+            border-radius: 10px;
+            background: #eef2ff;
+        }
+
+        .sender {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 70px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            resize: none;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 7px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .buttons a {
+            display: inline-block;
+            padding: 10px 18px;
+            margin: 5px;
+            border-radius: 7px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .feedback {
+            background: #16803c;
+        }
+
+        .home {
+            background: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>💬 Senior–Junior Discussion</h1>
+
+    <div class="chat-box">
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+            <div class="message">
+
+                <div class="sender">
+                    {{ message[0] }}
+                </div>
+
+                <div>
+                    {{ message[1] }}
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p style="text-align:center;">
+                No messages yet. Start the conversation!
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <form action="/send-message/{{ request_id }}" method="POST">
+
+        <textarea
+            name="message"
+            placeholder="Type your message..."
+            required
+        ></textarea>
+
+        <button type="submit">
+            Send Message
+        </button>
+
+    </form>
+
+
+    <div class="buttons">
+
+        {% if role == "Junior" %}
+
+        <a
+            class="feedback"
+            href="/feedback/{{ request_id }}"
+        >
+            ⭐ Give Feedback
+        </a>
+
+        <a
+            class="home"
+            href="/junior-home"
+        >
+            ← Home
+        </a>
+
+        {% else %}
+
+        <a
+            class="home"
+            href="/senior-dashboard"
+        >
+            ← Dashboard
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

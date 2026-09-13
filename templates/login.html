@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Senior–Junior Connect | Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .container {
+            width: 380px;
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5568d9;
+        }
+
+        .register {
+            text-align: center;
+            margin-top: 22px;
+            color: #666;
+        }
+
+        .register a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">🤝</div>
+
+    <h1>Senior–Junior Connect</h1>
+
+    <p class="subtitle">
+        Connect. Guide. Grow.
+    </p>
+
+    <form action="/login-check" method="POST">
+
+        <label>Select Role</label>
+
+        <select name="role" required>
+            <option value="">-- Select Role --</option>
+            <option value="Junior">Junior</option>
+            <option value="Senior">Senior</option>
+        </select>
+
+        <label>Username</label>
+
+        <input
+            type="text"
+            name="username"
+            placeholder="Enter your username"
+            required
+        >
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+        >
+
+        <button type="submit">
+            LOGIN
+        </button>
+
+    </form>
+
+    <div class="register">
+
+        <p>New user?</p>
+
+        <br>
+
+        <a href="/junior">
+            Register as Junior
+        </a>
+
+        &nbsp; | &nbsp;
+
+        <a href="/senior-register">
+            Register as Senior
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

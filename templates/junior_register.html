@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Junior Registration | Senior–Junior Connect</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 40px 15px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 19px;
+        }
+
+        label {
+            display: block;
+            margin-top: 14px;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 30px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5568d9;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Junior Registration</h1>
+
+    <p class="subtitle">
+        Find the right senior and get guidance.
+    </p>
+
+    <form action="/junior-register" method="POST">
+
+        <h2>👤 Personal Details</h2>
+
+        <label>Full Name</label>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            required
+        >
+
+        <label>Department</label>
+
+        <input
+            type="text"
+            name="department"
+            placeholder="Example: CSE"
+            required
+        >
+
+        <label>Year</label>
+
+        <input
+            type="text"
+            name="year"
+            placeholder="Example: 2nd Year"
+            required
+        >
+
+        <label>City / District</label>
+
+        <input
+            type="text"
+            name="location"
+            placeholder="Example: Coimbatore"
+        >
+
+        <h2>💻 Skills & Interests</h2>
+
+        <label>Skills / Interests</label>
+
+        <textarea
+            name="skills"
+            placeholder="Example: Python, Java, Web Development"
+            required
+        ></textarea>
+
+        <h2>🎯 What Help Do You Need?</h2>
+
+        <label>Your Requirement</label>
+
+        <textarea
+            name="requirement"
+            placeholder="Example: I want to participate in a hackathon. I need help choosing a project."
+            required
+        ></textarea>
+
+        <h2>📞 Guidance Preference</h2>
+
+        <label>Preferred Guidance Mode</label>
+
+        <select name="mode" required>
+
+            <option value="">
+                -- Select --
+            </option>
+
+            <option value="Online">
+                Online
+            </option>
+
+            <option value="In Person">
+                In Person
+            </option>
+
+            <option value="Both">
+                Both
+            </option>
+
+        </select>
+
+        <h2>🔐 Create Login</h2>
+
+        <label>Username</label>
+
+        <input
+            type="text"
+            name="username"
+            placeholder="Create a username"
+            required
+        >
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Create a password"
+            required
+        >
+
+        <button type="submit">
+            CREATE JUNIOR ACCOUNT
+        </button>
+
+    </form>
+
+    <div class="login-link">
+
+        Already have an account?
+
+        <a href="/login">
+            Login
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

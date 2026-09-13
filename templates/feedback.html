@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Give Feedback</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 11px;
+            margin-top: 7px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: #16803c;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>⭐ Give Feedback</h1>
+
+        <p style="text-align:center;">
+            How was your guidance experience with
+            <b>{{ request_data[1] }}</b>?
+        </p>
+
+
+        <form
+            method="POST"
+            action="/submit-feedback/{{ request_data[0] }}"
+        >
+
+            <label>Rating</label>
+
+            <select name="rating" required>
+
+                <option value="">Select Rating</option>
+
+                <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+
+                <option value="4">⭐⭐⭐⭐ Good</option>
+
+                <option value="3">⭐⭐⭐ Average</option>
+
+                <option value="2">⭐⭐ Needs Improvement</option>
+
+                <option value="1">⭐ Poor</option>
+
+            </select>
+
+
+            <label>Comment</label>
+
+            <textarea
+                name="comment"
+                placeholder="Tell us about your experience..."
+            ></textarea>
+
+
+            <button type="submit">
+                Submit Feedback
+            </button>
+
+        </form>
+
+
+        <a
+            class="back"
+            href="/my-requests"
+        >
+            ← Back to My Requests
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
