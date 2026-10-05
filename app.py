@@ -1264,6 +1264,14 @@ def manage_profile():
 # RUN
 # ==================================================
 create_database()
+@app.errorhandler(404)
+def page_not_found(error):
+    return "Page not found", 404
+
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    return "Internal server error. Please try again.", 500
 if __name__ == "__main__":
 
     app.run(debug=True)
